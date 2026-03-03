@@ -1,0 +1,119 @@
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fetch from 'node-fetch';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = 7777; // Your Node.js server runs on 7777
+const FAST_API_URL = 'http://127.0.0.1:8000'; // Your FastAPI backend
+
+// Middleware
+app.use(express.json());
+app.use(express.static(path.join(__dirname))); // Serve static files
+
+// Proxy endpoint to fetch from FastAPI
+app.get('/api/menu', async (req, res) => {
+    try {
+        console.log('🔄 Fetching menu from FastAPI...');
+        const response = await fetch(`${FAST_API_URL}/get_all`);
+
+        if (!response.ok) {
+            throw new Error(`FastAPI responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('✅ Menu fetched successfully from FastAPI');
+        res.json(data);
+    } catch (error) {
+        console.error('❌ Error fetching from FastAPI:', error.message);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch menu from FastAPI backend'
+        });
+    }
+});
+
+// Proxy endpoint to get item by name
+app.get('/api/menu/item', async (req, res) => {
+    const itemName = req.query.name;
+
+    if (!itemName) {
+        return res.status(400).json({
+            success: false,
+            error: "Please provide a name parameter"
+        });
+    }
+
+    try {
+        console.log(`🔄 Fetching item "${itemName}" from FastAPI...`);
+        const response = await fetch(`${FAST_API_URL}/get?name=${encodeURIComponent(itemName)}`);
+
+        if (!response.ok) {
+            throw new Error(`FastAPI responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(`✅ Item "${itemName}" fetched successfully`);
+        res.json(data);
+    } catch (error) {
+        console.error('❌ Error fetching from FastAPI:', error.message);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch item from FastAPI backend'
+        });
+    }
+});
+
+// NEW ENDPOINT: Get signature food items
+app.get('/api/signature-food', async (req, res) => {
+    try {
+        console.log('🔄 Fetching signature food from FastAPI...');
+        const response = await fetch(`${FAST_API_URL}/get_signature_food`);
+
+        if (!response.ok) {
+            throw new Error(`FastAPI responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('✅ Signature food fetched successfully from FastAPI');
+        res.json(data);
+    } catch (error) {
+        console.error('❌ Error fetching signature food from FastAPI:', error.message);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch signature food from FastAPI backend'
+        });
+    }
+});
+
+// Serve your original homepage (the calm design with carousel)
+app.get('/', (req, res) => {
+    console.log('🌐 Serving homepage');
+    res.sendFile(path.join(__dirname, 'home10.html')); // your original homepage
+});
+
+// Serve the dynamic menu page at /menu
+app.get('/menu', (req, res) => {
+    console.log('📋 Serving menu page');
+    res.sendFile(path.join(__dirname, 'menu7.html'));
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        node_server_port: PORT,
+        fastapi_backend: FAST_API_URL
+    });
+});
+
+
+
+app.listen(PORT, () => {
+
+    console.log(`🖥️  Web interface: http://localhost:${PORT}`);
+
+});
