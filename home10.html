@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Bhagsu Fast Food · calm & earthy</title>
+    <!-- Favicon (your icon) -->
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doeeoa5f1/image/upload/v1772536802/jyn5elzzjimje0vjrq27.png">
+    <!-- Fonts + Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* RESET – calm, less saturation, soft edges */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3efe8;  /* warm off-white */
+            color: #2e2a27;        /* soft dark brown */
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* soft scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #e3dbd0; }
+        ::-webkit-scrollbar-thumb { background: #b68b7a; border-radius: 12px; } /* muted */
+
+        /* loading skeleton animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #e0d9d0 25%, #f0e8e0 50%, #e0d9d0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            border: 1px solid #ddd0c4;
+        }
+
+        .skeleton-img {
+            height: 220px;
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            border-bottom: 1px solid #ddd0c4;
+        }
+
+        .skeleton-title {
+            height: 2rem;
+            width: 70%;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 4px;
+        }
+
+        .skeleton-text {
+            height: 1rem;
+            width: 90%;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 4px;
+        }
+
+        .skeleton-price {
+            height: 1.8rem;
+            width: 40%;
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 4px;
+        }
+
+        /* --- NAVBAR (softer, light) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(255, 250, 240, 0.85); /* floral white with transparency */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 2px solid #d6c9bc;  /* subtle border */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            z-index: 100;
+        }
+
+        /* Logo container with your icon */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo img {
+            height: 2.5rem;
+            width: auto;
+            border-radius: 8px;  /* soft edge */
+            transition: transform 0.2s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.02);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #9b6b5c, #6d4c41);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #3a3530;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b68b7a;
+            color: #6d4c41;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4a413a;
+        }
+
+        /* mobile menu – soft */
+        @media (max-width: 800px) {
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 250, 240, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                gap: 1.8rem;
+                padding: 2.2rem 0;
+                border-bottom: 2px solid #d6c9bc;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 99;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* --- HERO – calming gradient, less contrast --- */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(125deg, #4d3b33 0%, #796056 100%),
+            url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png') center/cover no-repeat;  /* MAIN COVER */
+            background-blend-mode: overlay;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fefcf7;
+            border-bottom: 4px solid #cfa392;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 5%;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3.2rem, 12vw, 5.5rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 0 #5f4b40;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+            font-weight: 300;
+            margin: 1.5rem 0 2.5rem;
+            text-shadow: 1px 1px 0 #3d2e27;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #b68b7a;    /* muted terracotta */
+            color: #2e2a27;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid #8c6f61;
+            font-size: 1.1rem;
+            transition: 0.2s;
+            box-shadow: 4px 4px 0 #5f4b40;
+        }
+
+        .btn:hover {
+            background: #d6b5a5;
+            border-color: #6d4c41;
+            box-shadow: 6px 6px 0 #5f4b40;
+        }
+
+        /* --- sections: calm, airy --- */
+        section {
+            padding: 5rem 5%;
+            border-bottom: 1px solid #ddd6cd;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            border-left: 8px solid #cfa392;
+            padding-left: 1.5rem;
+            line-height: 1.1;
+            color: #3f332d;
+        }
+
+        /* about grid – soft image border */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-image {
+            background: url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png') center/cover;  /* reuse main cover for about */
+            height: 430px;
+            border: 2px solid #cfa392;
+            box-shadow: 8px 8px 0 #e4cfc0;
+        }
+        .about-text p {
+            font-size: 1.2rem;
+            font-weight: 350;
+            color: #3d352f;
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .about-text i {
+            color: #b68b7a;
+            font-size: 1.8rem;
+            width: 2.8rem;
+            text-align: center;
+        }
+
+        /* MENU – soft cards, light shadow */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .menu-card {
+            background: #fffcf7;
+            border: 1px solid #ddd0c4;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 6px 6px 0 #e1d3c8;
+        }
+        .menu-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 #cfb9ab;
+        }
+        .menu-card:active {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0 #cfb9ab;
+        }
+        .menu-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #ddd0c4;
+        }
+        .menu-info {
+            padding: 1.5rem 1.2rem 1.8rem;
+        }
+        .menu-info h3 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.4rem;
+            color: #4a3c35;
+        }
+        .menu-info p {
+            color: #5b4f48;
+            font-weight: 350;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+        .price {
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: #9b6b5c;
+            border-bottom: 2px solid #e1cfc0;
+            display: inline-block;
+        }
+
+        /* contact + directions – muted, clean */
+        .contact-direction {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: #f9f3ec;
+            border: 1px solid #d9cbbc;
+            padding: 0;
+        }
+        .contact-info {
+            background: url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png') center/cover;  /* MAIN COVER for contact background */
+            padding: 2.5rem;
+            color: #fcf6ed;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-right: 1px solid #d9cbbc;
+            min-height: 300px;
+            box-shadow: inset 0 0 0 1000px rgba(71, 51, 41, 0.6); /* soft overlay */
+        }
+        .contact-info h3, .direction-details h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            border-left: 8px solid #e3b7a5;
+            padding-left: 1rem;
+        }
+        .contact-info i, .direction-details i {
+            margin-right: 14px;
+            color: #eacbbc;
+            width: 1.8rem;
+        }
+        .direction-details {
+            background: #f6ede5;
+            padding: 2.5rem;
+        }
+        .map-container {
+            margin-top: 2rem;
+            border: 1px solid #cbb7a8;
+            height: 210px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* directions block – calm earthy overlay (keeping original unsplash, not replaced) */
+        #directions {
+            background: linear-gradient(115deg, #50423b, #685b52),
+            url('https://images.unsplash.com/photo-1627662057125-1e8c4b4f5c4f?q=80&w=2070&auto=format&fit=crop') center/cover;
+            background-blend-mode: soft-light;
+            border-bottom: 2px solid #bdaa9c;
+        }
+        #directions .section-title {
+            border-left-color: #ebcfbe;
+            color: #fff6ec;
+        }
+        .direction-block {
+            background: rgba(54, 41, 35, 0.65);
+            backdrop-filter: blur(3px);
+            border: 1px solid #d7c1b2;
+            padding: 2.8rem;
+            max-width: 750px;
+            color: #fff4ea;
+        }
+        .direction-block p {
+            font-size: 1.2rem;
+            font-weight: 350;
+            margin: 1.2rem 0;
+            display: flex;
+            align-items: center;
+        }
+        .direction-block i {
+            color: #f0cfbc;
+            width: 2.2rem;
+            font-size: 1.5rem;
+        }
+
+        /* ===== NEW REVIEWS SECTION – calm, minimal ===== */
+        #reviews {
+            background: #f2eae2;
+            border-bottom: 1px solid #dacfc6;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .review-card {
+            background: #fffaf5;
+            border: 1px solid #dccfc4;
+            padding: 2rem 1.5rem;
+            box-shadow: 5px 5px 0 #d8c8bb;
+            transition: all 0.2s;
+        }
+        .review-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 #c9b2a2;
+        }
+        .review-card i {
+            color: #b68b7a;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .review-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #3b332e;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+        }
+        .reviewer {
+            font-weight: 600;
+            color: #6d4c41;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .reviewer i {
+            font-size: 1rem;
+            color: #cfa392;
+        }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2f2823;
+            color: #bcafa5;
+            font-weight: 300;
+            border-top: 4px solid #b68b7a;
+        }
+
+        /* --- FUN FAB – softer, still playful --- */
+        .fun-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #b68b7a;    /* muted base */
+            color: #2c241f;
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;     /* slightly softened but not fully round */
+            border: 2px solid #9c7766;
+            box-shadow: 5px 5px 0 #6f5549;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 200;
+            transition: 0.1s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .fun-fab:active {
+            transform: translate(4px, 4px);
+            box-shadow: 1px 1px 0 #6f5549;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .about-grid, .contact-direction {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2.4rem;
+            }
+            .contact-info {
+                border-right: none;
+                border-bottom: 1px solid #d9cbbc;
+            }
+        }
+
+        /* menu highlight animation – soft glow */
+        .menu-highlight {
+            animation: gentlePulse 0.9s ease 2;
+        }
+        @keyframes gentlePulse {
+            0% { box-shadow: 0 0 0 0 #dbaa92; }
+            50% { box-shadow: 0 0 0 12px #ecd9cf; }
+            100% { box-shadow: 0 0 0 0 #dbaa92; }
+        }
+
+        /* error message styling */
+        .error-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: #fff0e8;
+            border: 2px solid #cfa392;
+            color: #6d4c41;
+        }
+        .error-message i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #b68b7a;
+        }
+        .retry-btn {
+            background: #b68b7a;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 2px solid #8c6f61;
+            box-shadow: 3px 3px 0 #5f4b40;
+        }
+        .retry-btn:hover {
+            background: #c9a18f;
+        }
+
+        /* ===== SMALL & SLEEK FOR ANDROID (95% USERS) ===== */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            .navbar {
+                padding: 0.6rem 5%;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+            .logo img {
+                height: 2rem;  /* smaller on mobile */
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            .hamburger {
+                font-size: 1.6rem;
+            }
+            .hero {
+                min-height: 400px;
+            }
+            .hero-content h1 {
+                font-size: clamp(2.2rem, 10vw, 3.2rem);
+            }
+            .hero-content p {
+                font-size: 0.95rem;
+                margin: 1rem 0 1.5rem;
+            }
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            section {
+                padding: 3rem 5%;
+            }
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                padding-left: 1rem;
+            }
+            .about-grid {
+                gap: 1.5rem;
+            }
+            .about-image {
+                height: 220px;
+            }
+            .about-text p {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+            .about-text i {
+                font-size: 1.3rem;
+                width: 2rem;
+            }
+            .menu-grid {
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .menu-card .menu-info {
+                padding: 1rem 0.8rem 1.2rem;
+            }
+            .menu-info h3 {
+                font-size: 1.4rem;
+            }
+            .menu-info p {
+                font-size: 0.85rem;
+            }
+            .price {
+                font-size: 1.2rem;
+            }
+            .contact-info, .direction-details {
+                padding: 1.5rem;
+            }
+            .contact-info h3, .direction-details h3 {
+                font-size: 1.5rem;
+            }
+            .contact-info i, .direction-details i {
+                font-size: 1rem;
+                width: 1.5rem;
+                margin-right: 8px;
+            }
+            .map-container {
+                height: 160px;
+            }
+            .direction-block {
+                padding: 1.5rem;
+            }
+            .direction-block p {
+                font-size: 0.95rem;
+                margin: 0.8rem 0;
+            }
+            .direction-block i {
+                font-size: 1.2rem;
+                width: 1.8rem;
+            }
+            .reviews-grid {
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .review-card {
+                padding: 1.2rem 1rem;
+            }
+            .review-card i {
+                font-size: 1.4rem;
+            }
+            .review-text {
+                font-size: 0.9rem;
+            }
+            .reviewer {
+                font-size: 0.85rem;
+            }
+            .fun-fab {
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+                bottom: 16px;
+                right: 16px;
+                border-radius: 16px;
+            }
+            footer {
+                padding: 1.5rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://res.cloudinary.com/doeeoa5f1/image/upload/v1772536802/jyn5elzzjimje0vjrq27.png" alt="Bhagsu Fast Food icon">
+        <span>Bhagsu Fast Food</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="/menu">Menu</a>
+        <a href="#contact">Contact</a>
+        <a href="#directions">Directions</a>
+        <a href="#reviews">Reviews</a>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- floating fun button (random menu picker) -->
+<div class="fun-fab" id="randomMenuBtn" title="pick a dish for me">
+    <i class="fas fa-dice"></i>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Bhagsu Fast Food</h1>
+        <p>gentle flavours, mountain roots — fast & calming</p>
+        <a href="/menu" class="btn">explore menu →</a>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title">About us</h2>
+    <div class="about-grid">
+        <div class="about-image" aria-label="Restaurant interior with mountain view"></div>
+        <div class="about-text">
+            <p><i class="fas fa-mountain"></i> Born in the lap of Dhauladhar, we serve Himachali fast food with a gentle touch.</p>
+            <p><i class="fas fa-utensils"></i> Generations-old recipes, local spices, and a calm vibe.</p>
+            <p><i class="fas fa-leaf"></i> Fresh, fast, and soothing – that's our promise.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SIGNATURE MENU (DYNAMIC) -->
+<section id="signature-menu">
+    <h2 class="section-title">Signature fast food</h2>
+    <div class="menu-grid" id="signatureMenuGrid">
+        <!-- Loading skeletons will be shown here initially -->
+        <div class="menu-card skeleton">
+            <div class="skeleton-img"></div>
+            <div class="menu-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text" style="width: 60%;"></div>
+                <div class="skeleton-price" style="margin-top: 0.8rem;"></div>
+            </div>
+        </div>
+        <div class="menu-card skeleton">
+            <div class="skeleton-img"></div>
+            <div class="menu-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text" style="width: 60%;"></div>
+                <div class="skeleton-price" style="margin-top: 0.8rem;"></div>
+            </div>
+        </div>
+        <div class="menu-card skeleton">
+            <div class="skeleton-img"></div>
+            <div class="menu-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text" style="width: 60%;"></div>
+                <div class="skeleton-price" style="margin-top: 0.8rem;"></div>
+            </div>
+        </div>
+        <div class="menu-card skeleton">
+            <div class="skeleton-img"></div>
+            <div class="menu-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text" style="width: 60%;"></div>
+                <div class="skeleton-price" style="margin-top: 0.8rem;"></div>
+            </div>
+        </div>
+    </div>
+    <p style="text-align: center; margin-top: 3rem; font-weight: 350; color: #5f4b40;">✨ 30+ items available – tap the dice for a random favourite ✨</p>
+</section>
+
+<!-- CONTACT + ADDRESS -->
+<section id="contact">
+    <h2 class="section-title">Contact & address</h2>
+    <div class="contact-direction">
+        <div class="contact-info">
+            <h3>reach us</h3>
+            <p><i class="fas fa-phone-alt"></i> +91 9891 232 789</p>
+            <p><i class="fas fa-envelope"></i> hello@himalayanbites.in</p>
+            <p><i class="fas fa-clock"></i> 11:00 – 23:00 (last order 22:30)</p>
+            <p><i class="fas fa-instagram"></i> @himalayanbites</p>
+        </div>
+        <div class="direction-details">
+            <h3>📍 Police lane, Dharamshala</h3>
+            <p><i class="fas fa-map-pin"></i> Near Police Ground, Dharamshala 176219</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3204.0241575344503!2d76.32213137109223!3d32.20469098591768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b51037f6075ad%3A0x864fe6a41c807954!2sBhagsu%20Fast%20Food!5e1!3m2!1sen!2sin!4v1772486084822!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section id="directions">
+    <h2 class="section-title">how to find us</h2>
+    <div class="direction-block">
+        <p><i class="fas fa-car"></i> From bus stand, 10 min taxi or walk up Mall.</p>
+        <p><i class="fas fa-train"></i> Nearest rail: Pathankot (90 km) – cabs available.</p>
+        <p><i class="fas fa-plane"></i> Dharamshala airport (Kangra) – 15 km, pre-paid taxi.</p>
+        <p><i class="fas fa-location-dot"></i> Opposite Tibetan monastery, beside prayer wheel.</p>
+        <p style="margin-top: 2rem;"><i class="fas fa-arrow-right"></i> Free parking behind building.</p>
+    </div>
+</section>
+
+<!-- ===== REVIEWS SECTION ===== -->
+<section id="reviews">
+    <h2 class="section-title">what people say</h2>
+    <div class="reviews-grid">
+        <div class="review-card">
+            <i class="fas fa-quote-left"></i>
+            <p class="review-text">“The most soothing momos in town. Broth was light, spices gentle – perfect after a long trek.”</p>
+            <div class="reviewer"><i class="fas fa-hiking"></i> Aarav, Manali</div>
+        </div>
+        <div class="review-card">
+            <i class="fas fa-quote-left"></i>
+            <p class="review-text">“I loved the calming vibe and the siddu – not too heavy, just right. The chutney is amazing!”</p>
+            <div class="reviewer"><i class="fas fa-heart"></i> Priya, Dharamshala</div>
+        </div>
+        <div class="review-card">
+            <i class="fas fa-quote-left"></i>
+            <p class="review-text">“Finally a fast food place that doesn’t shout. Earthy decor, friendly staff, and that aloo chaat 🤤”</p>
+            <div class="reviewer"><i class="fas fa-camera"></i> Sam, McLeod Ganj</div>
+        </div>
+        <div class="review-card">
+            <i class="fas fa-quote-left"></i>
+            <p class="review-text">“Random dice button picked their lamb sliders – best decision. Will come back every week.”</p>
+            <div class="reviewer"><i class="fas fa-dice"></i> Nikhil, Delhi</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2025 Bhagsu Fast Food – calming Indian fast food. All tastes reserved
+</footer>
+
+<script>
+    (function() {
+        // mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Function to fetch and display signature food
+        async function loadSignatureFood() {
+            const menuGrid = document.getElementById('signatureMenuGrid');
+
+            try {
+                console.log('🔄 Fetching signature food...');
+                const response = await fetch('/api/signature-food');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Signature food loaded:', data);
+
+                if (data.success && data.signature_food && data.signature_food.length > 0) {
+                    renderSignatureFood(data.signature_food);
+                } else {
+                    throw new Error('No signature food data received');
+                }
+
+            } catch (error) {
+                console.error('❌ Error loading signature food:', error);
+                showErrorMessage(menuGrid, 'Failed to load signature items. Please try again.');
+            }
+        }
+
+        // Function to render signature food items
+        function renderSignatureFood(items) {
+            const menuGrid = document.getElementById('signatureMenuGrid');
+            menuGrid.innerHTML = ''; // Clear loading skeletons
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.setAttribute('data-menu', item.name.toLowerCase().replace(/\s+/g, '-'));
+
+                // Create image style with background image
+                const imageUrl = item.image_url || 'https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png';
+
+                card.innerHTML = `
+                    <div class="menu-img" style="background-image: url('${imageUrl}');"></div>
+                    <div class="menu-info">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <span class="price">${item.price}</span>
+                        ${item.available ? '' : '<p style="color: #b68b7a; margin-top: 0.5rem;">(currently unavailable)</p>'}
+                    </div>
+                `;
+
+                menuGrid.appendChild(card);
+            });
+        }
+
+        // Function to show error message
+        function showErrorMessage(container, message) {
+            container.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                    <button class="retry-btn" onclick="location.reload()">
+                        <i class="fas fa-redo-alt"></i> Retry
+                    </button>
+                </div>
+            `;
+        }
+
+        // Load signature food when page loads
+        document.addEventListener('DOMContentLoaded', loadSignatureFood);
+
+        // random menu picker (dice FAB)
+        const fab = document.getElementById('randomMenuBtn');
+
+        function getRandomMenuItem() {
+            // Get only the signature menu cards (not the loading skeletons)
+            const menuCards = document.querySelectorAll('#signatureMenuGrid .menu-card:not(.skeleton)');
+            if (menuCards.length === 0) return null;
+            const randomIndex = Math.floor(Math.random() * menuCards.length);
+            return menuCards[randomIndex];
+        }
+
+        function scrollAndHighlight(card) {
+            if (!card) return;
+            const menuCards = document.querySelectorAll('#signatureMenuGrid .menu-card');
+            menuCards.forEach(c => c.classList.remove('menu-highlight'));
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('menu-highlight');
+            setTimeout(() => {
+                card.classList.remove('menu-highlight');
+            }, 1500);
+            if (navigator.vibrate) navigator.vibrate(15);
+        }
+
+        fab.addEventListener('click', () => {
+            const randomCard = getRandomMenuItem();
+            if (randomCard) {
+                scrollAndHighlight(randomCard);
+            } else {
+                alert('🧘 Loading signature items... please try again in a moment!');
+            }
+        });
+
+        // double tap logo easter egg
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('dblclick', () => {
+            const randomCard = getRandomMenuItem();
+            if (randomCard) scrollAndHighlight(randomCard);
+        });
+
+        // Refresh signature food every 5 minutes (optional)
+        setInterval(loadSignatureFood, 5 * 60 * 1000);
+    })();
+</script>
+</body>
+</html>
