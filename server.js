@@ -11,10 +11,7 @@ const FAST_API_URL = 'https://sayo-menu-api.onrender.com'; // Your FastAPI backe
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname), { 
-    dotfiles: 'ignore', 
-    index: false 
-}));
+app.use(express.static(path.join(__dirname)));
 // Proxy endpoint to fetch from FastAPI
 app.get('/api/menu', async (req, res) => {
     try {
@@ -93,13 +90,13 @@ app.get('/api/signature-food', async (req, res) => {
 // Serve your original homepage (the calm design with carousel)
 app.get('/', (req, res) => {
     console.log('🌐 Serving homepage');
-    res.sendFile(path.join(__dirname, 'home10.html')); // your original homepage
+    res.sendFile(path.join(__dirname, 'home.html')); // your original homepage
 });
 
 // Serve the dynamic menu page at /menu
 app.get('/menu', (req, res) => {
     console.log('📋 Serving menu page');
-    res.sendFile(path.join(__dirname, 'menu7.html'));
+    res.sendFile(path.join(__dirname, 'menu.html'));
 });
 
 // Health check endpoint
@@ -118,4 +115,5 @@ app.listen(PORT, () => {
     console.log(`🖥️  Web interface: http://localhost:${PORT}`);
 
 });
+
 
