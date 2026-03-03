@@ -6,8 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 7777; // Your Node.js server runs on 7777
-const FAST_API_URL = 'http://127.0.0.1:8000'; // Your FastAPI backend
+const PORT = process.env.PORT || 7411; // Your Node.js server runs on 7777
+const FAST_API_URL = 'https://sayo-menu-api.onrender.com'; // Your FastAPI backend
 
 // Middleware
 app.use(express.json());
@@ -117,3 +117,4 @@ app.listen(PORT, () => {
 
 
 });
+
