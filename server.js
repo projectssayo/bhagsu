@@ -11,8 +11,10 @@ const FAST_API_URL = 'https://sayo-menu-api.onrender.com'; // Your FastAPI backe
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname))); // Serve static files
-
+app.use(express.static(path.join(__dirname), { 
+    dotfiles: 'ignore', 
+    index: false 
+}));
 // Proxy endpoint to fetch from FastAPI
 app.get('/api/menu', async (req, res) => {
     try {
@@ -116,3 +118,4 @@ app.listen(PORT, () => {
     console.log(`🖥️  Web interface: http://localhost:${PORT}`);
 
 });
+
