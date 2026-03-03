@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fetch from 'node-fetch';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -115,5 +114,6 @@ app.get('/health', (req, res) => {
 app.listen(PORT, () => {
 
     console.log(`🖥️  Web interface: http://localhost:${PORT}`);
+
 
 });
