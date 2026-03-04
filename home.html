@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Bhagsu Fast Food · monochrome + color images</title>
+    <title>Bhagsu Fast Food · calm & earthy</title>
     <!-- Favicon (your icon) -->
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/doeeoa5f1/image/upload/v1772536802/jyn5elzzjimje0vjrq27.png">
     <!-- Fonts + Icons -->
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ========== RESET – MONOCHROME UI, FULL COLOR IMAGES ========== */
+        /* RESET – calm, less saturation, soft edges */
         * {
             margin: 0;
             padding: 0;
@@ -21,44 +21,44 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #ffffff;        /* pure white */
-            color: #111111;             /* near black */
+            background: #f3efe8;  /* warm off-white */
+            color: #2e2a27;        /* soft dark brown */
             line-height: 1.5;
             scroll-behavior: smooth;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* grayscale scrollbar */
+        /* soft scrollbar */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #dddddd; }
-        ::-webkit-scrollbar-thumb { background: #555555; border-radius: 12px; }
+        ::-webkit-scrollbar-track { background: #e3dbd0; }
+        ::-webkit-scrollbar-thumb { background: #b68b7a; border-radius: 12px; } /* muted */
 
-        /* skeleton loading – grayscale (ui only) */
+        /* loading skeleton animation */
         @keyframes shimmer {
             0% { background-position: -1000px 0; }
             100% { background-position: 1000px 0; }
         }
 
         .skeleton {
-            background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+            background: linear-gradient(90deg, #e0d9d0 25%, #f0e8e0 50%, #e0d9d0 75%);
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
-            border: 1px solid #cccccc;
+            border: 1px solid #ddd0c4;
         }
 
         .skeleton-img {
             height: 220px;
-            background: linear-gradient(90deg, #d4d4d4 25%, #e6e6e6 50%, #d4d4d4 75%);
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
-            border-bottom: 1px solid #cccccc;
+            border-bottom: 1px solid #ddd0c4;
         }
 
         .skeleton-title {
             height: 2rem;
             width: 70%;
             margin-bottom: 0.8rem;
-            background: linear-gradient(90deg, #d4d4d4 25%, #e6e6e6 50%, #d4d4d4 75%);
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
             border-radius: 4px;
@@ -68,7 +68,7 @@
             height: 1rem;
             width: 90%;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #d4d4d4 25%, #e6e6e6 50%, #d4d4d4 75%);
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
             border-radius: 4px;
@@ -77,13 +77,13 @@
         .skeleton-price {
             height: 1.8rem;
             width: 40%;
-            background: linear-gradient(90deg, #d4d4d4 25%, #e6e6e6 50%, #d4d4d4 75%);
+            background: linear-gradient(90deg, #d6cdc2 25%, #e6ddd2 50%, #d6cdc2 75%);
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
             border-radius: 4px;
         }
 
-        /* --- NAVBAR – stark black/white --- */
+        /* --- NAVBAR (softer, light) --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -92,14 +92,15 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 250, 240, 0.85); /* floral white with transparency */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border-bottom: 2px solid #000000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-bottom: 2px solid #d6c9bc;  /* subtle border */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
             z-index: 100;
         }
 
+        /* Logo container with your icon */
         .logo {
             display: flex;
             align-items: center;
@@ -112,9 +113,8 @@
         .logo img {
             height: 2.5rem;
             width: auto;
-            border-radius: 0;           /* straight edges – more graphic */
+            border-radius: 8px;  /* soft edge */
             transition: transform 0.2s;
-            /* NO grayscale – keep original color */
         }
 
         .logo img:hover {
@@ -122,9 +122,10 @@
         }
 
         .logo span {
-            color: #000000;              /* solid black, no gradient */
-            background: none;
-            -webkit-text-fill-color: initial;
+            background: linear-gradient(135deg, #9b6b5c, #6d4c41);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -136,42 +137,42 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
-            color: #000000;
+            color: #3a3530;
             padding: 0.3rem 0;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
         }
 
         .nav-links a:hover {
-            border-bottom-color: #000000;
-            color: #000000;
+            border-bottom-color: #b68b7a;
+            color: #6d4c41;
         }
 
         .hamburger {
             display: none;
             font-size: 2rem;
             cursor: pointer;
-            color: #000;
+            color: #4a413a;
         }
 
-        /* mobile menu */
+        /* mobile menu – soft */
         @media (max-width: 800px) {
             .nav-links {
                 position: fixed;
                 top: 72px;
                 left: 0;
                 width: 100%;
-                background: #ffffff;
-                backdrop-filter: none;
+                background: rgba(255, 250, 240, 0.98);
+                backdrop-filter: blur(10px);
                 flex-direction: column;
                 align-items: center;
                 gap: 1.8rem;
                 padding: 2.2rem 0;
-                border-bottom: 2px solid #000;
+                border-bottom: 2px solid #d6c9bc;
                 transform: translateY(-150%);
                 transition: transform 0.3s ease;
                 z-index: 99;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             }
             .nav-links.active {
                 transform: translateY(0);
@@ -181,44 +182,23 @@
             }
         }
 
-        /* --- HERO – high contrast monochrome UI, color image --- */
+        /* --- HERO – calming gradient, less contrast --- */
         .hero {
             height: 100vh;
             min-height: 600px;
-            position: relative;
-            background-color: #111;                 /* fallback black */
-            color: #ffffff;
-            border-bottom: 4px solid #000;
+            background: linear-gradient(125deg, #4d3b33 0%, #796056 100%),
+            url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479915/q2mobi1eguhfksm9nxcn.png') center/cover no-repeat;  /* MAIN COVER */
+            background-blend-mode: overlay;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            isolation: isolate;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);          /* dark overlay for readability – keeps image color visible */
-            z-index: 1;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            /* NO grayscale – original color */
-            z-index: 0;
+            color: #fefcf7;
+            border-bottom: 4px solid #cfa392;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
             max-width: 900px;
             padding: 0 5%;
         }
@@ -228,14 +208,14 @@
             font-weight: 700;
             letter-spacing: -1px;
             line-height: 1.1;
-            text-shadow: 3px 3px 0 #000;
+            text-shadow: 2px 2px 0 #5f4b40;
         }
 
         .hero-content p {
             font-size: clamp(1.1rem, 3.5vw, 1.6rem);
             font-weight: 300;
             margin: 1.5rem 0 2.5rem;
-            text-shadow: 1px 1px 0 #000;
+            text-shadow: 1px 1px 0 #3d2e27;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
@@ -244,27 +224,26 @@
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: #000000;
-            color: #ffffff;
+            background: #b68b7a;    /* muted terracotta */
+            color: #2e2a27;
             font-weight: 600;
             text-decoration: none;
-            border: 2px solid #000000;
+            border: 2px solid #8c6f61;
             font-size: 1.1rem;
-            transition: 0.1s linear;
-            box-shadow: 5px 5px 0 #444;
+            transition: 0.2s;
+            box-shadow: 4px 4px 0 #5f4b40;
         }
 
         .btn:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: #000;
-            box-shadow: 7px 7px 0 #222;
+            background: #d6b5a5;
+            border-color: #6d4c41;
+            box-shadow: 6px 6px 0 #5f4b40;
         }
 
-        /* --- sections – clean, monochrome UI --- */
+        /* --- sections: calm, airy --- */
         section {
             padding: 5rem 5%;
-            border-bottom: 1px solid #cccccc;
+            border-bottom: 1px solid #ddd6cd;
         }
 
         .section-title {
@@ -273,13 +252,13 @@
             letter-spacing: -1px;
             margin-bottom: 2.5rem;
             display: inline-block;
-            border-left: 8px solid #000;
+            border-left: 8px solid #cfa392;
             padding-left: 1.5rem;
             line-height: 1.1;
-            color: #000;
+            color: #3f332d;
         }
 
-        /* about grid – black/white UI, color image */
+        /* about grid – soft image border */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -287,28 +266,27 @@
             align-items: center;
         }
         .about-image {
-            background: url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png') center/cover;
+            background: url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png') center/cover;  /* reuse main cover for about */
             height: 430px;
-            border: 2px solid #000;
-            /* NO grayscale – original color */
-            box-shadow: 8px 8px 0 #aaa;
+            border: 2px solid #cfa392;
+            box-shadow: 8px 8px 0 #e4cfc0;
         }
         .about-text p {
             font-size: 1.2rem;
             font-weight: 350;
-            color: #222;
+            color: #3d352f;
             margin-bottom: 1.8rem;
             display: flex;
             align-items: center;
         }
         .about-text i {
-            color: #000;
+            color: #b68b7a;
             font-size: 1.8rem;
             width: 2.8rem;
             text-align: center;
         }
 
-        /* MENU – white cards, black border, no colour on UI, but images in color */
+        /* MENU – soft cards, light shadow */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -316,25 +294,24 @@
             margin-top: 2rem;
         }
         .menu-card {
-            background: #ffffff;
-            border: 2px solid #000000;
+            background: #fffcf7;
+            border: 1px solid #ddd0c4;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 6px 6px 0 #aaaaaa;
+            box-shadow: 6px 6px 0 #e1d3c8;
         }
         .menu-card:hover {
             transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0 #777;
+            box-shadow: 10px 10px 0 #cfb9ab;
         }
         .menu-card:active {
             transform: translate(2px, 2px);
-            box-shadow: 4px 4px 0 #777;
+            box-shadow: 4px 4px 0 #cfb9ab;
         }
         .menu-img {
             height: 220px;
             background-size: cover;
             background-position: center;
-            border-bottom: 2px solid #000;
-            /* NO grayscale – original color */
+            border-bottom: 1px solid #ddd0c4;
         }
         .menu-info {
             padding: 1.5rem 1.2rem 1.8rem;
@@ -344,10 +321,10 @@
             font-weight: 600;
             letter-spacing: -0.5px;
             margin-bottom: 0.4rem;
-            color: #000;
+            color: #4a3c35;
         }
         .menu-info p {
-            color: #333;
+            color: #5b4f48;
             font-weight: 350;
             margin-bottom: 0.8rem;
             font-size: 1rem;
@@ -355,101 +332,76 @@
         .price {
             font-weight: 600;
             font-size: 1.6rem;
-            color: #000;
-            border-bottom: 2px solid #333;
+            color: #9b6b5c;
+            border-bottom: 2px solid #e1cfc0;
             display: inline-block;
         }
 
-        /* contact + directions – stark, high contrast UI, color images in background */
+        /* contact + directions – muted, clean */
         .contact-direction {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            background: #f5f5f5;
-            border: 2px solid #000;
+            background: #f9f3ec;
+            border: 1px solid #d9cbbc;
             padding: 0;
         }
         .contact-info {
-            background: #000000;          /* solid black */
+            background: url('https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479915/q2mobi1eguhfksm9nxcn.png') center/cover;  /* MAIN COVER for contact background */
             padding: 2.5rem;
-            color: #ffffff;
+            color: #fcf6ed;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            border-right: 2px solid #000;
+            border-right: 1px solid #d9cbbc;
             min-height: 300px;
-            /* background image is set in HTML as style, but we keep it color – no filter */
+            box-shadow: inset 0 0 0 1000px rgba(71, 51, 41, 0.6); /* soft overlay */
         }
         .contact-info h3, .direction-details h3 {
             font-size: 2rem;
             font-weight: 500;
             margin-bottom: 1rem;
-            border-left: 8px solid #aaa;
+            border-left: 8px solid #e3b7a5;
             padding-left: 1rem;
-        }
-        .contact-info h3 {
-            border-left-color: #fff;       /* white accent on black */
         }
         .contact-info i, .direction-details i {
             margin-right: 14px;
-            color: #ccc;
+            color: #eacbbc;
             width: 1.8rem;
         }
         .direction-details {
-            background: #ffffff;
+            background: #f6ede5;
             padding: 2.5rem;
-        }
-        .direction-details h3 {
-            border-left-color: #000;
-        }
-        .direction-details i {
-            color: #000;
         }
         .map-container {
             margin-top: 2rem;
-            border: 2px solid #000;
+            border: 1px solid #cbb7a8;
             height: 210px;
         }
         iframe {
             width: 100%;
             height: 100%;
             border: 0;
-            /* NO grayscale – map in original color */
         }
 
-        /* directions block – black & white UI, color background image */
+        /* directions block – calm earthy overlay (keeping original unsplash, not replaced) */
         #directions {
-            background: #111;                /* dark base */
-            border-bottom: 2px solid #000;
-            position: relative;
-            isolation: isolate;
-        }
-        #directions::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1627662057125-1e8c4b4f5c4f?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            /* NO grayscale – original color, only brightness adjusted for contrast */
-            filter: brightness(0.5);        /* darken to make white text readable, but keep color */
-            z-index: 0;
+            background: linear-gradient(115deg, #50423b, #685b52),
+            url('https://images.unsplash.com/photo-1627662057125-1e8c4b4f5c4f?q=80&w=2070&auto=format&fit=crop') center/cover;
+            background-blend-mode: soft-light;
+            border-bottom: 2px solid #bdaa9c;
         }
         #directions .section-title {
-            border-left-color: #aaa;
-            color: #fff;
-            position: relative;
-            z-index: 2;
+            border-left-color: #ebcfbe;
+            color: #fff6ec;
         }
         .direction-block {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(54, 41, 35, 0.65);
             backdrop-filter: blur(3px);
-            border: 2px solid #ffffff;
+            border: 1px solid #d7c1b2;
             padding: 2.8rem;
             max-width: 750px;
-            color: #ffffff;
-            position: relative;
-            z-index: 2;
+            color: #fff4ea;
         }
         .direction-block p {
             font-size: 1.2rem;
@@ -459,15 +411,15 @@
             align-items: center;
         }
         .direction-block i {
-            color: #ccc;
+            color: #f0cfbc;
             width: 2.2rem;
             font-size: 1.5rem;
         }
 
-        /* REVIEWS – black & white UI only, images not involved */
+        /* ===== NEW REVIEWS SECTION – calm, minimal ===== */
         #reviews {
-            background: #f2f2f2;
-            border-bottom: 2px solid #aaa;
+            background: #f2eae2;
+            border-bottom: 1px solid #dacfc6;
         }
         .reviews-grid {
             display: grid;
@@ -476,62 +428,62 @@
             margin-top: 2rem;
         }
         .review-card {
-            background: #ffffff;
-            border: 2px solid #000;
+            background: #fffaf5;
+            border: 1px solid #dccfc4;
             padding: 2rem 1.5rem;
-            box-shadow: 5px 5px 0 #777;
+            box-shadow: 5px 5px 0 #d8c8bb;
             transition: all 0.2s;
         }
         .review-card:hover {
             transform: translate(-3px, -3px);
-            box-shadow: 8px 8px 0 #444;
+            box-shadow: 8px 8px 0 #c9b2a2;
         }
         .review-card i {
-            color: #000;
+            color: #b68b7a;
             font-size: 1.8rem;
             margin-bottom: 0.8rem;
         }
         .review-text {
             font-size: 1.1rem;
             font-style: italic;
-            color: #222;
+            color: #3b332e;
             margin-bottom: 1.2rem;
             line-height: 1.5;
         }
         .reviewer {
             font-weight: 600;
-            color: #000;
+            color: #6d4c41;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         .reviewer i {
             font-size: 1rem;
-            color: #444;
+            color: #cfa392;
         }
 
         /* footer */
         footer {
             text-align: center;
             padding: 2rem;
-            background: #111;
-            color: #aaa;
+            background: #2f2823;
+            color: #bcafa5;
             font-weight: 300;
-            border-top: 4px solid #000;
+            border-top: 4px solid #b68b7a;
         }
 
-        /* FAB – black & white dice */
+        /* --- FUN FAB – softer, still playful --- */
         .fun-fab {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: #000000;
-            color: #ffffff;
+            background: #b68b7a;    /* muted base */
+            color: #2c241f;
             width: 64px;
             height: 64px;
-            border-radius: 0;            /* sharp edges – more awwwards */
-            border: 2px solid #ffffff;
-            box-shadow: 5px 5px 0 #666;
+            border-radius: 20px;     /* slightly softened but not fully round */
+            border: 2px solid #9c7766;
+            box-shadow: 5px 5px 0 #6f5549;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -543,7 +495,7 @@
         }
         .fun-fab:active {
             transform: translate(4px, 4px);
-            box-shadow: 1px 1px 0 #666;
+            box-shadow: 1px 1px 0 #6f5549;
         }
 
         /* responsive */
@@ -556,51 +508,50 @@
             }
             .contact-info {
                 border-right: none;
-                border-bottom: 2px solid #000;
+                border-bottom: 1px solid #d9cbbc;
             }
         }
 
-        /* menu highlight – black pulse */
+        /* menu highlight animation – soft glow */
         .menu-highlight {
-            animation: blackPulse 0.9s ease 2;
+            animation: gentlePulse 0.9s ease 2;
         }
-        @keyframes blackPulse {
-            0% { box-shadow: 0 0 0 0 #000; }
-            50% { box-shadow: 0 0 0 12px #aaa; }
-            100% { box-shadow: 0 0 0 0 #000; }
+        @keyframes gentlePulse {
+            0% { box-shadow: 0 0 0 0 #dbaa92; }
+            50% { box-shadow: 0 0 0 12px #ecd9cf; }
+            100% { box-shadow: 0 0 0 0 #dbaa92; }
         }
 
-        /* error message */
+        /* error message styling */
         .error-message {
             grid-column: 1 / -1;
             text-align: center;
             padding: 3rem;
-            background: #f0f0f0;
-            border: 2px solid #000;
-            color: #000;
+            background: #fff0e8;
+            border: 2px solid #cfa392;
+            color: #6d4c41;
         }
         .error-message i {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: #000;
+            color: #b68b7a;
         }
         .retry-btn {
-            background: #000;
-            color: #fff;
+            background: #b68b7a;
+            color: white;
             border: none;
             padding: 0.8rem 2rem;
             margin-top: 1rem;
             font-size: 1rem;
             cursor: pointer;
-            border: 2px solid #000;
-            box-shadow: 3px 3px 0 #333;
+            border: 2px solid #8c6f61;
+            box-shadow: 3px 3px 0 #5f4b40;
         }
         .retry-btn:hover {
-            background: #444;
-            color: #fff;
+            background: #c9a18f;
         }
 
-        /* ===== ANDROID/SMALL – keep sharp ===== */
+        /* ===== SMALL & SLEEK FOR ANDROID (95% USERS) ===== */
         @media (max-width: 600px) {
             body {
                 font-size: 14px;
@@ -612,7 +563,7 @@
                 font-size: 1.3rem;
             }
             .logo img {
-                height: 2rem;
+                height: 2rem;  /* smaller on mobile */
             }
             .nav-links a {
                 font-size: 0.9rem;
@@ -719,7 +670,7 @@
                 font-size: 1.5rem;
                 bottom: 16px;
                 right: 16px;
-                border-radius: 0;
+                border-radius: 16px;
             }
             footer {
                 padding: 1.5rem;
@@ -745,38 +696,38 @@
     <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
 </nav>
 
-<!-- floating dice – monochrome UI -->
+<!-- floating fun button (random menu picker) -->
 <div class="fun-fab" id="randomMenuBtn" title="pick a dish for me">
     <i class="fas fa-dice"></i>
 </div>
 
-<!-- HERO – color image, monochrome UI -->
+<!-- HERO -->
 <section id="home" class="hero">
     <div class="hero-content">
         <h1>Bhagsu Fast Food</h1>
-        <p>monochrome UI · full‑color moments</p>
+        <p>gentle flavours, mountain roots — fast & calming</p>
         <a href="/menu" class="btn">explore menu →</a>
     </div>
 </section>
 
-<!-- ABOUT – color image -->
+<!-- ABOUT -->
 <section id="about">
     <h2 class="section-title">About us</h2>
     <div class="about-grid">
-        <div class="about-image" aria-label="Restaurant interior in original color"></div>
+        <div class="about-image" aria-label="Restaurant interior with mountain view"></div>
         <div class="about-text">
-            <p><i class="fas fa-mountain"></i> Born in the lap of Dhauladhar, served with contrast.</p>
-            <p><i class="fas fa-utensils"></i> Generations-old recipes, presented in black & white.</p>
-            <p><i class="fas fa-leaf"></i> Fresh, fast, and graphic – that's our promise.</p>
+            <p><i class="fas fa-mountain"></i> Born in the lap of Dhauladhar, we serve Himachali fast food with a gentle touch.</p>
+            <p><i class="fas fa-utensils"></i> Generations-old recipes, local spices, and a calm vibe.</p>
+            <p><i class="fas fa-leaf"></i> Fresh, fast, and soothing – that's our promise.</p>
         </div>
     </div>
 </section>
 
-<!-- SIGNATURE MENU (DYNAMIC) – images in color, UI monochrome -->
+<!-- SIGNATURE MENU (DYNAMIC) -->
 <section id="signature-menu">
     <h2 class="section-title">Signature fast food</h2>
     <div class="menu-grid" id="signatureMenuGrid">
-        <!-- Loading skeletons (grayscale UI) -->
+        <!-- Loading skeletons will be shown here initially -->
         <div class="menu-card skeleton">
             <div class="skeleton-img"></div>
             <div class="menu-info">
@@ -814,10 +765,10 @@
             </div>
         </div>
     </div>
-    <p style="text-align: center; margin-top: 3rem; font-weight: 350; color: #222;">⚫ 30+ items available – tap the dice for a random favourite ⚫</p>
+    <p style="text-align: center; margin-top: 3rem; font-weight: 350; color: #5f4b40;">✨ 30+ items available – tap the dice for a random favourite ✨</p>
 </section>
 
-<!-- CONTACT + ADDRESS – UI monochrome, embedded map in color -->
+<!-- CONTACT + ADDRESS -->
 <section id="contact">
     <h2 class="section-title">Contact & address</h2>
     <div class="contact-direction">
@@ -832,13 +783,13 @@
             <h3>📍 Police lane, Dharamshala</h3>
             <p><i class="fas fa-map-pin"></i> Near Police Ground, Dharamshala 176219</p>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3204.0241575344503!2d76.32213137109223!3d32.20469098591768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b51037f6075ad%3A0x864fe6a41c807954!2sBhagsu%20Fast%20Food!5e1!3m2!1sen!2sin!4v1772486084822!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3204.0241575344503!2d76.32213137109223!3d32.20469098591768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b51037f6075ad%3A0x864fe6a41c807954!2sBhagsu%20Fast%20Food!5e1!3m2!1sen!2sin!4v1772486084822!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
 </section>
 
-<!-- DIRECTIONS – color background image, monochrome UI overlay -->
+<!-- DIRECTIONS -->
 <section id="directions">
     <h2 class="section-title">how to find us</h2>
     <div class="direction-block">
@@ -850,35 +801,35 @@
     </div>
 </section>
 
-<!-- REVIEWS SECTION – only text, no images -->
+<!-- ===== REVIEWS SECTION ===== -->
 <section id="reviews">
     <h2 class="section-title">what people say</h2>
     <div class="reviews-grid">
         <div class="review-card">
             <i class="fas fa-quote-left"></i>
-            <p class="review-text">“The most graphic momos in town. Broth was light, contrast perfect.”</p>
+            <p class="review-text">“The most soothing momos in town. Broth was light, spices gentle – perfect after a long trek.”</p>
             <div class="reviewer"><i class="fas fa-hiking"></i> Aarav, Manali</div>
         </div>
         <div class="review-card">
             <i class="fas fa-quote-left"></i>
-            <p class="review-text">“I loved the stark vibe and the siddu – not too heavy, just right.”</p>
+            <p class="review-text">“I loved the calming vibe and the siddu – not too heavy, just right. The chutney is amazing!”</p>
             <div class="reviewer"><i class="fas fa-heart"></i> Priya, Dharamshala</div>
         </div>
         <div class="review-card">
             <i class="fas fa-quote-left"></i>
-            <p class="review-text">“Finally a fast food place that doesn’t shout. Black & white decor, friendly staff.”</p>
+            <p class="review-text">“Finally a fast food place that doesn’t shout. Earthy decor, friendly staff, and that aloo chaat 🤤”</p>
             <div class="reviewer"><i class="fas fa-camera"></i> Sam, McLeod Ganj</div>
         </div>
         <div class="review-card">
             <i class="fas fa-quote-left"></i>
-            <p class="review-text">“Random dice button picked their lamb sliders – best decision in monochrome.”</p>
+            <p class="review-text">“Random dice button picked their lamb sliders – best decision. Will come back every week.”</p>
             <div class="reviewer"><i class="fas fa-dice"></i> Nikhil, Delhi</div>
         </div>
     </div>
 </section>
 
 <footer>
-    © 2026 sayoLabs – monochrome UI · color images
+    © 2026 sayoLabs All tastes reserved
 </footer>
 
 <script>
@@ -898,7 +849,7 @@
             });
         });
 
-        // Fetch and display signature food
+        // Function to fetch and display signature food
         async function loadSignatureFood() {
             const menuGrid = document.getElementById('signatureMenuGrid');
 
@@ -925,15 +876,17 @@
             }
         }
 
+        // Function to render signature food items
         function renderSignatureFood(items) {
             const menuGrid = document.getElementById('signatureMenuGrid');
-            menuGrid.innerHTML = ''; 
+            menuGrid.innerHTML = ''; // Clear loading skeletons
 
             items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'menu-card';
                 card.setAttribute('data-menu', item.name.toLowerCase().replace(/\s+/g, '-'));
 
+                // Create image style with background image
                 const imageUrl = item.image_url || 'https://res.cloudinary.com/doeeoa5f1/image/upload/v1772479962/nc3zzvxpexj4kxibgvxf.png';
 
                 card.innerHTML = `
@@ -942,7 +895,7 @@
                         <h3>${item.name}</h3>
                         <p>${item.description}</p>
                         <span class="price">${item.price}</span>
-                        ${item.available ? '' : '<p style="color: #777; margin-top: 0.5rem;">(currently unavailable)</p>'}
+                        ${item.available ? '' : '<p style="color: #b68b7a; margin-top: 0.5rem;">(currently unavailable)</p>'}
                     </div>
                 `;
 
@@ -950,6 +903,7 @@
             });
         }
 
+        // Function to show error message
         function showErrorMessage(container, message) {
             container.innerHTML = `
                 <div class="error-message">
@@ -962,12 +916,14 @@
             `;
         }
 
+        // Load signature food when page loads
         document.addEventListener('DOMContentLoaded', loadSignatureFood);
 
         // random menu picker (dice FAB)
         const fab = document.getElementById('randomMenuBtn');
 
         function getRandomMenuItem() {
+            // Get only the signature menu cards (not the loading skeletons)
             const menuCards = document.querySelectorAll('#signatureMenuGrid .menu-card:not(.skeleton)');
             if (menuCards.length === 0) return null;
             const randomIndex = Math.floor(Math.random() * menuCards.length);
@@ -991,7 +947,7 @@
             if (randomCard) {
                 scrollAndHighlight(randomCard);
             } else {
-                alert('⚫ Loading signature items... please try again in a moment! ⚫');
+                alert('🧘 Loading signature items... please try again in a moment!');
             }
         });
 
@@ -1002,6 +958,7 @@
             if (randomCard) scrollAndHighlight(randomCard);
         });
 
+        // Refresh signature food every 5 minutes (optional)
         setInterval(loadSignatureFood, 5 * 60 * 1000);
     })();
 </script>
