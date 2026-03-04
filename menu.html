@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Bhagsu · Menu </title>
+    <title>Bhagsu · Menu – monochrome UI</title>
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/doeeoa5f1/image/upload/v1772536802/jyn5elzzjimje0vjrq27.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,17 +18,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f3efe8;
-            color: #2e2a27;
+            background: #ffffff;           /* pure white */
+            color: #111111;                /* near black */
             line-height: 1.5;
             -webkit-tap-highlight-color: transparent;
         }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #e3dbd0; }
-        ::-webkit-scrollbar-thumb { background: #b68b7a; border-radius: 12px; }
+        ::-webkit-scrollbar-track { background: #dddddd; }
+        ::-webkit-scrollbar-thumb { background: #555555; border-radius: 12px; }
 
-        /* navbar (same as original) */
+        /* navbar – monochrome */
         .navbar {
             position: fixed;
             top: 0;
@@ -37,11 +37,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background: rgba(255, 250, 240, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border-bottom: 2px solid #d6c9bc;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border-bottom: 2px solid #000000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             z-index: 100;
         }
 
@@ -57,8 +57,9 @@
         .logo img {
             height: 2.5rem;
             width: auto;
-            border-radius: 8px;  /* soft edge */
+            border-radius: 0;           /* straight edges – graphic */
             transition: transform 0.2s;
+            /* keep original color – no filter */
         }
 
         .logo img:hover {
@@ -66,10 +67,9 @@
         }
 
         .logo span {
-            background: linear-gradient(135deg, #9b6b5c, #6d4c41);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #000000;              /* solid black, no gradient */
+            background: none;
+            -webkit-text-fill-color: initial;
         }
 
         .nav-links {
@@ -81,22 +81,22 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
-            color: #3a3530;
+            color: #000000;
             padding: 0.3rem 0;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
         }
 
         .nav-links a:hover {
-            border-bottom-color: #b68b7a;
-            color: #6d4c41;
+            border-bottom-color: #000000;
+            color: #000000;
         }
 
         .hamburger {
             display: none;
             font-size: 2rem;
             cursor: pointer;
-            color: #4a413a;
+            color: #000;
         }
 
         @media (max-width: 800px) {
@@ -105,26 +105,26 @@
                 top: 72px;
                 left: 0;
                 width: 100%;
-                background: rgba(255, 250, 240, 0.98);
-                backdrop-filter: blur(10px);
+                background: #ffffff;
+                backdrop-filter: none;
                 flex-direction: column;
                 align-items: center;
                 gap: 1.8rem;
                 padding: 2.2rem 0;
-                border-bottom: 2px solid #d6c9bc;
+                border-bottom: 2px solid #000;
                 transform: translateY(-150%);
                 transition: transform 0.3s ease;
                 z-index: 99;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
             .nav-links.active {
                 transform: translateY(0);
-            }.
-                         .logo {
-                             font-size: 1.3rem;
-                         }
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
             .logo img {
-                height: 2rem;  /* smaller on mobile */
+                height: 2rem;
             }
             .hamburger {
                 display: block;
@@ -150,26 +150,26 @@
             font-size: 2.5rem;
             font-weight: 600;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #9b6b5c, #6d4c41);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #000000;               /* solid black */
+            background: none;
+            -webkit-text-fill-color: initial;
         }
 
         .home-link {
-            background: #b68b7a;
-            color: #2e2a27;
+            background: #000000;           /* black */
+            color: #ffffff;
             padding: 0.6rem 1.4rem;
             text-decoration: none;
             font-weight: 500;
-            border: 2px solid #8c6f61;
-            box-shadow: 4px 4px 0 #5f4b40;
+            border: 2px solid #000000;
+            box-shadow: 4px 4px 0 #666666;
             transition: 0.2s;
         }
 
         .home-link:hover {
-            background: #d6b5a5;
-            box-shadow: 6px 6px 0 #5f4b40;
+            background: #333333;
+            color: #ffffff;
+            box-shadow: 6px 6px 0 #444444;
         }
 
         /* search + toggle row */
@@ -197,7 +197,7 @@
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #9b6b5c;
+            color: #555555;                /* gray */
             font-size: 1.2rem;
         }
 
@@ -205,35 +205,35 @@
             width: 100%;
             padding: 1.2rem 1.2rem 1.2rem 3.2rem;
             font-size: 1.2rem;
-            border: 2px solid #d6c9bc;
-            background: #fffcf7;
-            box-shadow: 6px 6px 0 #e1d3c8;
+            border: 2px solid #000000;
+            background: #ffffff;
+            box-shadow: 6px 6px 0 #aaaaaa;
             font-family: 'Inter', sans-serif;
             outline: none;
         }
 
         #searchInput:focus {
-            border-color: #b68b7a;
-            box-shadow: 8px 8px 0 #cfb9ab;
+            border-color: #000000;
+            box-shadow: 8px 8px 0 #777777;
         }
 
-        /* availability toggle (retro button group) */
+        /* availability toggle – monochrome */
         .availability-toggle {
             display: flex;
-            background: #e8ddd2;
-            border: 2px solid #b68b7a;
-            box-shadow: 4px 4px 0 #6f5549;
+            background: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: 4px 4px 0 #777777;
         }
 
         .toggle-btn {
             padding: 1rem 1.8rem;
             font-weight: 600;
             font-size: 1rem;
-            background: #f3efe8;
+            background: #f5f5f5;
             border: none;
-            border-right: 2px solid #b68b7a;
+            border-right: 2px solid #000000;
             cursor: pointer;
-            color: #2e2a27;
+            color: #111111;
             transition: 0.1s;
             font-family: 'Inter', sans-serif;
         }
@@ -243,9 +243,9 @@
         }
 
         .toggle-btn.active {
-            background: #b68b7a;
-            color: #1f1b18;
-            box-shadow: inset -2px -2px 0 #6f5549;
+            background: #000000;
+            color: #ffffff;
+            box-shadow: inset -2px -2px 0 #444444;
         }
 
         .toggle-btn:active {
@@ -261,10 +261,10 @@
         .category-title {
             font-size: 2rem;
             font-weight: 600;
-            border-left: 8px solid #cfa392;
+            border-left: 8px solid #000000;
             padding-left: 1.2rem;
             margin-bottom: 1.5rem;
-            color: #3f332d;
+            color: #000000;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -274,7 +274,7 @@
 
         .category-title i {
             font-size: 1.8rem;
-            color: #9b6b5c;
+            color: #000000;
             transition: transform 0.2s;
         }
 
@@ -297,9 +297,9 @@
         }
 
         .menu-card {
-            background: #fffcf7;
-            border: 1px solid #ddd0c4;
-            box-shadow: 6px 6px 0 #e1d3c8;
+            background: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: 6px 6px 0 #aaaaaa;
             transition: 0.2s;
             display: flex;
             flex-direction: column;
@@ -308,44 +308,45 @@
 
         .menu-card.unavailable {
             opacity: 0.75;
-            filter: grayscale(0.3);
+            /* no grayscale on image – only UI effect */
         }
 
         .menu-card:hover {
             transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0 #cfb9ab;
+            box-shadow: 10px 10px 0 #777777;
         }
 
         .menu-card.highlight {
-            animation: gentlePulse 0.9s ease 2;
+            animation: blackPulse 0.9s ease 2;
         }
 
-        @keyframes gentlePulse {
-            0% { box-shadow: 0 0 0 0 #dbaa92, 0 0 0 0 rgba(198, 138, 110, 0.4); }
-            50% { box-shadow: 0 0 0 12px #ecd9cf, 0 0 0 24px rgba(198, 138, 110, 0.1); }
-            100% { box-shadow: 0 0 0 0 #dbaa92, 0 0 0 0 rgba(198, 138, 110, 0.4); }
+        @keyframes blackPulse {
+            0% { box-shadow: 0 0 0 0 #000000, 0 0 0 0 rgba(0,0,0,0.4); }
+            50% { box-shadow: 0 0 0 12px #cccccc, 0 0 0 24px rgba(0,0,0,0.1); }
+            100% { box-shadow: 0 0 0 0 #000000, 0 0 0 0 rgba(0,0,0,0.4); }
         }
 
         .menu-img {
             height: 140px;
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid #ddd0c4;
-            background-color: #e8ddd2;
+            border-bottom: 2px solid #000000;
+            background-color: #dddddd;
             position: relative;
+            /* full color – no filter */
         }
 
         .unavailable-badge {
             position: absolute;
             top: 8px;
             right: 8px;
-            background: #b63e3e;
-            color: #fff4e6;
+            background: #333333;            /* dark gray instead of red */
+            color: #ffffff;
             font-weight: 600;
             font-size: 0.7rem;
             padding: 0.25rem 0.6rem;
-            border: 1px solid #8b2c2c;
-            box-shadow: 2px 2px 0 #4d2a2a;
+            border: 1px solid #000000;
+            box-shadow: 2px 2px 0 #111111;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -359,25 +360,25 @@
             font-size: 1.3rem;
             font-weight: 600;
             letter-spacing: -0.3px;
-            color: #4a3c35;
+            color: #000000;
             margin-bottom: 0.2rem;
             line-height: 1.3;
         }
 
         .menu-category-badge {
             display: inline-block;
-            background: #e4d5c9;
+            background: #dddddd;
             padding: 0.15rem 0.8rem;
             font-size: 0.7rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: #4a3c35;
+            color: #111111;
             margin-bottom: 0.5rem;
         }
 
         .menu-description {
-            color: #5b4f48;
+            color: #333333;
             font-weight: 350;
             margin-bottom: 0.8rem;
             font-size: 0.85rem;
@@ -391,40 +392,40 @@
         .menu-price {
             font-weight: 600;
             font-size: 1.4rem;
-            color: #9b6b5c;
-            border-bottom: 2px solid #e1cfc0;
+            color: #000000;
+            border-bottom: 2px solid #aaaaaa;
             display: inline-block;
         }
 
         .no-items {
             text-align: center;
             padding: 4rem;
-            background: #f9f3ec;
-            border: 2px dashed #d6c9bc;
+            background: #f5f5f5;
+            border: 2px dashed #000000;
             font-size: 1.4rem;
-            color: #6d4c41;
+            color: #111111;
         }
 
         footer {
             text-align: center;
             margin-top: 4rem;
             padding: 2rem;
-            color: #7a6a60;
-            border-top: 1px solid #ddd0c4;
+            color: #666666;
+            border-top: 2px solid #cccccc;
         }
 
-        /* floating dice (kept from original) */
+        /* floating dice – monochrome */
         .floating-dice {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: #b68b7a;
-            color: #2c241f;
+            background: #000000;
+            color: #ffffff;
             width: 64px;
             height: 64px;
-            border-radius: 16px;
-            border: 2px solid #9c7766;
-            box-shadow: 5px 5px 0 #6f5549;
+            border-radius: 0;
+            border: 2px solid #ffffff;
+            box-shadow: 5px 5px 0 #666666;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -436,19 +437,19 @@
 
         .floating-dice:active {
             transform: translate(4px, 4px);
-            box-shadow: 1px 1px 0 #6f5549;
+            box-shadow: 1px 1px 0 #666666;
         }
 
         .dice-hint {
             position: fixed;
             bottom: 100px;
             right: 30px;
-            background: #2f2823;
-            color: #f3efe8;
+            background: #222222;
+            color: #eeeeee;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            border: 1px solid #b68b7a;
+            border: 1px solid #777777;
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
@@ -464,9 +465,9 @@
             position: fixed;
             bottom: 100px;
             right: 24px;
-            background: #fffcf7;
-            border: 2px solid #b68b7a;
-            box-shadow: 8px 8px 0 #6f5549;
+            background: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: 8px 8px 0 #777777;
             padding: 1.5rem;
             width: 260px;
             z-index: 250;
@@ -475,6 +476,61 @@
 
         .price-modal.show {
             display: block;
+        }
+
+        .price-modal h4 {
+            margin-bottom: 1rem;
+            color: #000000;
+        }
+
+        .price-inputs {
+            margin-bottom: 1.2rem;
+        }
+
+        .price-field {
+            margin-bottom: 0.8rem;
+        }
+
+        .price-field label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 0.2rem;
+        }
+
+        .price-field input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #000000;
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.7rem;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .modal-btn.secondary {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .modal-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
         }
 
         .modal-overlay {
@@ -490,6 +546,15 @@
 
         .modal-overlay.show {
             display: block;
+        }
+
+        /* error message (if any) – monochrome */
+        .error-message {
+            text-align: center;
+            padding: 3rem;
+            background: #f0f0f0;
+            border: 2px solid #000;
+            color: #000;
         }
     </style>
 </head>
@@ -510,13 +575,13 @@
     <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
 </nav>
 
-<!-- floating dice (original) -->
+<!-- floating dice (monochrome) -->
 <div class="floating-dice" id="floatingDice">
     <i class="fas fa-dice"></i>
 </div>
 <div class="dice-hint" id="diceHint">tap = random · hold = price range</div>
 
-<!-- price modal (original) -->
+<!-- price modal -->
 <div class="modal-overlay" id="modalOverlay"></div>
 <div class="price-modal" id="priceModal">
     <h4>🎲 Pick in price range</h4>
@@ -542,7 +607,7 @@
         <a href="/" class="home-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </header>
 
-    <!-- filter row: search + availability toggle (NEW) -->
+    <!-- filter row: search + availability toggle -->
     <div class="filter-row">
         <div class="search-container">
             <div class="search-box">
